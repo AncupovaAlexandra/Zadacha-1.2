@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
+namespace _4_prakt
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string str = "Саша пошла кушать!!123";
+            if (Regex.IsMatch(str, "[A-Za-z]")) Console.WriteLine("Ошибка! В строке содержиться латинский символ.");
+            else
+            {
+                int countGlasn = Regex.Matches(str, @"[ауоыиэяюёе]", RegexOptions.IgnoreCase).Count;
+                int countSoglasn = Regex.Matches(str, @"[бвгджзйклмнпрстфхцчшщ]", RegexOptions.IgnoreCase).Count;
+                int countZnaki = Regex.Matches(str, @"[!"";:.,-]").Count;
+                int countDigits = Regex.Matches(str, @"\d").Count;
+
+                Console.WriteLine(str);
+                Console.WriteLine("Кол-во:\nГласных  букв: {0}\nСогласных  букв: {1}\nЦифр: {3}\nЗнаков препинания: {2}", countGlasn, countSoglasn, countZnaki, countDigits);
+            }
+            Console.ReadLine();
+        }
+    }
+}
